@@ -51,10 +51,12 @@ var truncate = function truncate(obj, maxDepth, options, curDepth) {
       } else {
         var newObj = {};
         for (var key in obj) {
-          if (isFlat(obj[key])) {
-            newObj[key] = obj[key];
-          } else {
-            newObj[key] = truncate(obj[key], maxDepth, options, newDepth);
+          if (obj) {
+            if (isFlat(obj[key])) {
+              newObj[key] = obj[key];
+            } else {
+              newObj[key] = truncate(obj[key], maxDepth, options, newDepth);
+            }
           }
         }
         return {
